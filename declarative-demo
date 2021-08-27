@@ -1,0 +1,18 @@
+pipeline{
+   agent any
+      environment{
+        PATH="/opt//opt/apache-maven-3.6.3/bin:$PATH"
+     }
+     stages{
+      stage("Git clone"){
+       steps{
+          git credentialsId: 'sample', url: 'https://github.com/venkateshreddy1388/Demo.git'
+         }
+      }
+      stage("Maven Build"){
+          steps{
+             sh "mvn clean package"
+          }
+       }
+    }
+ }
